@@ -4,6 +4,7 @@ Seeds baseline demo users, clinical profiles, initial screening records, and aud
 """
 
 from datetime import datetime, timezone
+from backend.app.core.config import settings
 from backend.app.core.database import SessionLocal, Base, engine
 from backend.app.core.security import hash_password
 from backend.app.models.models import (
@@ -11,10 +12,38 @@ from backend.app.models.models import (
     ScreeningResponse, ScreeningResult, Appointment, ClinicalNote, AuditLog
 )
 
+def bootstrap_admin():
+    """Creates a single admin from ADMIN_EMAIL / ADMIN_PASSWORD when demo seeding is off."""
+    if not (settings.ADMIN_EMAIL and settings.ADMIN_PASSWORD):
+        print("Demo seeding is off and ADMIN_EMAIL/ADMIN_PASSWORD are not set. No users created.")
+        return
+    db = SessionLocal()
+    try:
+        if db.query(User).filter(User.role == UserRole.ADMIN.value).first():
+            return
+        db.add(User(
+            role=UserRole.ADMIN.value,
+            email=settings.ADMIN_EMAIL.strip().lower(),
+            hashed_password=hash_password(settings.ADMIN_PASSWORD),
+            full_name="Administrator",
+            is_active=True,
+            is_verified=True
+        ))
+        db.commit()
+        print("Admin account created from environment settings.")
+    except Exception as e:
+        db.rollback()
+        print(f"Error creating admin: {e}")
+    finally:
+        db.close()
+
 def seed_database():
     Base.metadata.create_all(bind=engine)
+    if not settings.seed_demo_data:
+        bootstrap_admin()
+        return
     db = SessionLocal()
-    
+
     try:
         # Check if already seeded
         if db.query(User).first():

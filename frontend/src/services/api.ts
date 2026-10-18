@@ -3,7 +3,10 @@ import {
   ScreeningResult, ScreeningSummary, Appointment, ClinicalNote, AuditLog, AdminStats
 } from '../types';
 
-const API_BASE = '/api';
+// Local dev: empty -> Vite proxies /api to the backend.
+// Vercel: set VITE_API_URL to your Render URL (no trailing slash), e.g. https://autsim-api.onrender.com
+const API_ORIGIN = ((import.meta.env.VITE_API_URL as string | undefined) ?? '').replace(/\/$/, '');
+const API_BASE = `${API_ORIGIN}/api`;
 
 function getAuthHeaders(): HeadersInit {
   const token = localStorage.getItem('autiaignosis_token');
