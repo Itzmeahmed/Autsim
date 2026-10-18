@@ -1,0 +1,29 @@
+# Render Blueprint for the backend API.
+# Dashboard: New + > Blueprint > select this repo. Then fill in the "sync: false" values.
+services:
+  - type: web
+    name: autsim-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      # "staging" keeps OTP demo mode usable (OTP is shown in the API response, no SMS).
+      # Switch to "production" only after adding a real SMS provider and MOCK_OTP_MODE=False.
+      - key: ENV
+        value: staging
+      - key: MOCK_OTP_MODE
+        value: "True"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false   # paste your Neon connection string
+      - key: FRONTEND_URL
+        sync: false   # paste your Vercel URL after the frontend is deployed
+      - key: ENABLE_DEMO_LOGIN
+        value: "False"
+      - key: SEED_DEMO_DATA
+        value: "True"

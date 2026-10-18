@@ -251,11 +251,18 @@ def get_me(current_user: User = Depends(get_current_user)):
 
 @router.post("/demo-login/{role}")
 def demo_login(role: str, db: Session = Depends(get_db)):
-    """Helper route to instantly authenticate as any demo role (Patient, Clinician, Admin)."""
+    """Helper route to instantly authenticate as a demo role. Disabled unless demo mode is on."""
+    if not settings.demo_login_enabled:
+        raise HTTPException(status_code=404, detail="Not found.")
+
     role = role.lower()
     if role not in ["patient", "clinician", "admin"]:
         raise HTTPException(status_code=400, detail="Invalid role specified for demo.")
-        
+
+    # Never hand out an admin session without a password outside local development.
+    if role == "admin" and settings.ENV != "development":
+        raise HTTPException(status_code=403, detail="Admin demo login is only available in local development.")
+
     user = db.query(User).filter(User.role == role).first()
     if not user:
         raise HTTPException(status_code=404, detail="Demo user not found. Database seeding required.")
