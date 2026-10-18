@@ -1,0 +1,116 @@
+{
+  "model_version": "v1.1.0",
+  "best_model": "RandomForest",
+  "features": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10",
+    "Q11",
+    "Q12",
+    "Q13",
+    "Q14",
+    "Q15",
+    "Q16",
+    "Q17",
+    "Q18",
+    "Q19",
+    "Q20",
+    "domain_communication",
+    "domain_social_interaction",
+    "domain_sensory_responses",
+    "domain_repetitive_behaviors",
+    "domain_daily_life_skills",
+    "gender_enc",
+    "jaundice_enc",
+    "family_history_enc",
+    "age"
+  ],
+  "sample_count": 1200,
+  "positive_prevalence": 0.35,
+  "metrics": {
+    "RandomForest": {
+      "accuracy": 0.9917,
+      "precision": 0.9767,
+      "recall": 1.0,
+      "f1_score": 0.9882,
+      "roc_auc": 0.9988,
+      "confusion_matrix": [
+        [
+          154,
+          2
+        ],
+        [
+          0,
+          84
+        ]
+      ],
+      "false_positives": 2,
+      "false_negatives": 0
+    },
+    "LogisticRegression": {
+      "accuracy": 0.9917,
+      "precision": 0.9767,
+      "recall": 1.0,
+      "f1_score": 0.9882,
+      "roc_auc": 0.9995,
+      "confusion_matrix": [
+        [
+          154,
+          2
+        ],
+        [
+          0,
+          84
+        ]
+      ],
+      "false_positives": 2,
+      "false_negatives": 0
+    },
+    "DecisionTree": {
+      "accuracy": 0.9667,
+      "precision": 0.9222,
+      "recall": 0.9881,
+      "f1_score": 0.954,
+      "roc_auc": 0.9765,
+      "confusion_matrix": [
+        [
+          149,
+          7
+        ],
+        [
+          1,
+          83
+        ]
+      ],
+      "false_positives": 7,
+      "false_negatives": 1
+    },
+    "SVM": {
+      "accuracy": 0.9917,
+      "precision": 0.9767,
+      "recall": 1.0,
+      "f1_score": 0.9882,
+      "roc_auc": 0.9994,
+      "confusion_matrix": [
+        [
+          154,
+          2
+        ],
+        [
+          0,
+          84
+        ]
+      ],
+      "false_positives": 2,
+      "false_negatives": 0
+    }
+  },
+  "selection_rationale": "Selected RandomForest for superior F1-score (0.9882) and zero false negatives in screening evaluation."
+}

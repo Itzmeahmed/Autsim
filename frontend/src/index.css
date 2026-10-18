@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased font-sans min-h-screen selection:bg-teal-100 selection:text-teal-900;
+  }
+}
+
+/* Custom Healthcare UI Utilities */
+.healthcare-card {
+  @apply bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200;
+}
+
+.clinical-badge-warning {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200;
+}
+
+.clinical-badge-success {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200;
+}
+
+.clinical-badge-info {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-800 border border-teal-200;
+}

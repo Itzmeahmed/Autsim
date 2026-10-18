@@ -1,0 +1,83 @@
+{
+  "dataset_name": "Auti AIgnosis Screening Classification Dataset",
+  "total_rows": 1200,
+  "total_columns": 26,
+  "columns": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10",
+    "Q11",
+    "Q12",
+    "Q13",
+    "Q14",
+    "Q15",
+    "Q16",
+    "Q17",
+    "Q18",
+    "Q19",
+    "Q20",
+    "age",
+    "gender",
+    "jaundice",
+    "family_history",
+    "ethnicity",
+    "screening_indication"
+  ],
+  "dtypes": {
+    "Q1": "int64",
+    "Q2": "int64",
+    "Q3": "int64",
+    "Q4": "int64",
+    "Q5": "int64",
+    "Q6": "int64",
+    "Q7": "int64",
+    "Q8": "int64",
+    "Q9": "int64",
+    "Q10": "int64",
+    "Q11": "int64",
+    "Q12": "int64",
+    "Q13": "int64",
+    "Q14": "int64",
+    "Q15": "int64",
+    "Q16": "int64",
+    "Q17": "int64",
+    "Q18": "int64",
+    "Q19": "int64",
+    "Q20": "int64",
+    "age": "int64",
+    "gender": "str",
+    "jaundice": "str",
+    "family_history": "str",
+    "ethnicity": "str",
+    "screening_indication": "int64"
+  },
+  "missing_values_per_column": {},
+  "total_duplicate_rows": 0,
+  "target_column": "screening_indication",
+  "target_meaning": "0: Lower screening indication (typical), 1: Higher screening indication (referral recommended). NOT a medical diagnosis.",
+  "class_distribution_counts": {
+    "0": 780,
+    "1": 420
+  },
+  "class_distribution_percent": {
+    "0": 65.0,
+    "1": 35.0
+  },
+  "age_summary": {
+    "min": 2,
+    "max": 16,
+    "mean": 9.12
+  },
+  "data_leakage_assessment": {
+    "target_leakage_detected": false,
+    "post_outcome_features_present": false,
+    "validation_status": "PASSED"
+  }
+}
